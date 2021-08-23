@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\Customer;
+use App\Models\LineItem;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -11,10 +11,10 @@ use Rebing\GraphQL\Support\Query;
  * Class ProductQuery
  * @package App\GraphQL\Queries
  */
-class CustomerQuery extends Query
+class LineItemQuery extends Query
 {
     protected $attributes = [
-        'name' => 'customer'
+        'name' => 'lineItem'
     ];
 
     /**
@@ -22,7 +22,7 @@ class CustomerQuery extends Query
      */
     public function type(): Type
     {
-        return GraphQL::type('Customer');
+        return GraphQL::type('LineItem');
     }
 
     /**
@@ -46,6 +46,6 @@ class CustomerQuery extends Query
      */
     public function resolve($root, $args)
     {
-        return Customer::findOrFail($args['id']);
+        return LineItem::findOrFail($args['id']);
     }
 }

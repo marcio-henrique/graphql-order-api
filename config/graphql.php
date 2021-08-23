@@ -63,6 +63,10 @@ return [
                 'products' => App\GraphQL\Queries\ProductsQuery::class,
                 'customer' => App\GraphQL\Queries\CustomerQuery::class,
                 'customers' => App\GraphQL\Queries\CustomersQuery::class,
+                'order' => App\GraphQL\Queries\OrderQuery::class,
+                'orders' => App\GraphQL\Queries\OrdersQuery::class,
+                'lineItem' => App\GraphQL\Queries\LineItemQuery::class,
+                'lineItems' => App\GraphQL\Queries\LineItemsQuery::class,
             ],
             'mutation' => [
             ],
@@ -72,7 +76,9 @@ return [
     ],
     'types' => [
         'Product' => App\GraphQL\Types\ProductType::class,
-        'Customer' => App\GraphQL\Types\CustomerType::class
+        'Customer' => App\GraphQL\Types\CustomerType::class,
+        'Order' => App\GraphQL\Types\OrderType::class,
+        'LineItem' => App\GraphQL\Types\LineItemType::class
     ],
     // The types will be loaded on demand. Default is to load all types on each request
     // Can increase performance on schemes with many types

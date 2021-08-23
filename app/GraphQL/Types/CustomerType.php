@@ -16,7 +16,7 @@ class CustomerType extends GraphQLType
      * @var string[]
      */
     protected $attributes = [
-        'first_name' => 'Customer',
+        'name' => 'Customer',
         'description' => 'customer',
         'model' => Customer::class
     ];
@@ -69,6 +69,6 @@ class CustomerType extends GraphQLType
      */
     protected function resolveUpperNameField($root, $args)
     {
-        return strtoupper($root->first_name);
+        return strtoupper($root->name);
     }
 }
