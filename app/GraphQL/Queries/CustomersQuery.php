@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\Product;
+use App\Models\Customer;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -11,10 +11,10 @@ use Rebing\GraphQL\Support\Query;
  * Class ProductsQuery
  * @package App\GraphQL\Queries
  */
-class ProductsQuery extends Query
+class CustomersQuery extends Query
 {
     protected $attributes = [
-        'name' => 'products'
+        'first_name' => 'customers'
     ];
 
     /**
@@ -22,7 +22,7 @@ class ProductsQuery extends Query
      */
     public function type(): Type
     {
-        return Type::listOf(GraphQL::type('Product'));
+        return Type::listOf(GraphQL::type('Customer'));
     }
 
     /**
@@ -30,6 +30,6 @@ class ProductsQuery extends Query
      */
     public function resolve()
     {
-        return Product::all();
+        return Customer::all();
     }
 }
