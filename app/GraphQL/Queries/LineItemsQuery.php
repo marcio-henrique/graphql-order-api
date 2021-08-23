@@ -3,9 +3,12 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\LineItem;
+use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\SelectFields;
+use SebastianBergmann\Diff\Line;
 
 /**
  * Class ProductsQuery
@@ -28,8 +31,12 @@ class LineItemsQuery extends Query
     /**
      * @return mixed
      */
-    public function resolve()
+    public function resolve($root, $args, $context, ResolveInfo $info, SelectFields $getSelectFields)
     {
-        return LineItem::all();
+        $fields = $getSelectFields;
+        $with = $fields->getRelations();
+
+        return LineItem::with($with)
+            ->get();
     }
 }
