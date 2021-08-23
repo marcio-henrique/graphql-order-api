@@ -4,6 +4,7 @@ namespace App\GraphQL\Types;
 
 use App\Models\LineItem;
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 /**
@@ -33,11 +34,11 @@ class LineItemType extends GraphQLType
             'quantity' => [
                 'type' => Type::nonNull(Type::float()),
             ],
-            'product_id' => [
-                'type' => Type::nonNull(Type::int()),
+            'product' => [
+                'type' => GraphQL::type('Product'),
             ],
-            'order_id' => [
-                'type' => Type::nonNull(Type::int()),
+            'order' => [
+                'type' => GraphQL::type('Order'),
             ],
         ];
     }
