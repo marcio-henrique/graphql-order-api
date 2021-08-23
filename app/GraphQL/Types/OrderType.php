@@ -5,6 +5,7 @@ namespace App\GraphQL\Types;
 use App\Models\Order;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 /**
  * Class ProductType
@@ -33,20 +34,9 @@ class OrderType extends GraphQLType
             'total' => [
                 'type' => Type::nonNull(Type::float()),
             ],
-            'customer_id' => [
-                'type' => Type::nonNull(Type::int()),
+            'customer' => [
+                'type' => GraphQL::type('Customer'),
             ],
         ];
-    }
-
-
-    /**
-     * @param $root
-     * @param $args
-     * @return string
-     */
-    protected function resolveUpperNameField($root, $args)
-    {
-        return strtoupper($root->name);
     }
 }

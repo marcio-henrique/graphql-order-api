@@ -3,9 +3,11 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\Order;
+use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\SelectFields;
 
 /**
  * Class ProductsQuery
@@ -28,8 +30,13 @@ class OrdersQuery extends Query
     /**
      * @return mixed
      */
-    public function resolve()
+
+    public function resolve($root, $args, $context, ResolveInfo $info, SelectFields $getSelectFields)
     {
-        return Order::all();
+        $fields = $getSelectFields;
+        $with = $fields->getRelations();
+
+        return Order::with($with)
+            ->get();
     }
 }

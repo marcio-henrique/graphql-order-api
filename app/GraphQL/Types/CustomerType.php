@@ -60,15 +60,4 @@ class CustomerType extends GraphQLType
             ],
         ];
     }
-
-
-    /**
-     * @param $root
-     * @param $args
-     * @return string
-     */
-    protected function resolveUpperNameField($root, $args)
-    {
-        return strtoupper($root->name);
-    }
 }
